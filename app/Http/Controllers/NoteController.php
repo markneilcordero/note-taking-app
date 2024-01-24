@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Note;
 use App\Http\Requests\StoreNoteRequest;
 use App\Http\Requests\UpdateNoteRequest;
+use Illuminate\Support\Facades\DB;
 
 class NoteController extends Controller
 {
@@ -13,7 +14,8 @@ class NoteController extends Controller
      */
     public function index()
     {
-        return view('note.index', ['notes' => Note::all()]);
+        // return view('note.index', ['notes' => Note::all()]);
+        return view('note.index', ['notes' => DB::table('notes')->paginate(5)]);
     }
 
     /**
